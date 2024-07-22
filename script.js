@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const resultsDiv = document.getElementById('results');
-    let dictionary = {};
+    let sat_en_dictionary = {};
 
     // Load dictionary data
     fetch('sat_en_dictionary.json')
         .then(response => response.json())
         .then(data => {
-            dictionary = data;
+            sat_en_dictionary = data;
         })
         .catch(error => console.error('Error loading dictionary data:', error));
 
