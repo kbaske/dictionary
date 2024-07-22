@@ -36,12 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Display results
-        resultsDiv.innerHTML = `
-            <h2>Santali to English</h2>
-            ${santaliToEnglishResults.join('')}
-            <h2>English to Santali</h2>
-            ${englishToSantaliResults.join('')}
-        `;
+        // Display results based on available sections
+        let resultsHTML = '';
+        if (santaliToEnglishResults.length > 0) {
+            resultsHTML += `
+                <h2>Santali to English</h2>
+                ${santaliToEnglishResults.join('')}
+            `;
+        }
+
+        if (englishToSantaliResults.length > 0) {
+            resultsHTML += `
+                <h2>English to Santali</h2>
+                ${englishToSantaliResults.join('')}
+            `;
+        }
+
+        // If no results are found, display a message
+        if (resultsHTML === '') {
+            resultsHTML = '<p>No results found.</p>';
+        }
+
+        resultsDiv.innerHTML = resultsHTML;
     });
 });
