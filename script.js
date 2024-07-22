@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let dictionary = {};
 
     // Load dictionary data
-    fetch('dictionary.json')
+    fetch('sat_en_dictionary.json')
         .then(response => response.json())
         .then(data => {
             dictionary = data;
@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const englishToSantaliResults = [];
 
         // Search in Santali to English dictionary
-        for (const [santaliWord, englishMeaning] of Object.entries(dictionary.santali_to_english)) {
+        for (const [santaliWord, englishMeaning] of Object.entries(sat_en_dictionary.santali_to_english)) {
             if (santaliWord.toLowerCase().includes(query)) {
                 santaliToEnglishResults.push(`<div class="result-item">${santaliWord} - ${englishMeaning}</div>`);
             }
         }
 
         // Search in English to Santali dictionary
-        for (const [englishWord, santaliMeaning] of Object.entries(dictionary.english_to_santali)) {
+        for (const [englishWord, santaliMeaning] of Object.entries(sat_en_dictionary.english_to_santali)) {
             if (englishWord.toLowerCase().includes(query)) {
                 englishToSantaliResults.push(`<div class="result-item">${englishWord} - ${santaliMeaning}</div>`);
             }
