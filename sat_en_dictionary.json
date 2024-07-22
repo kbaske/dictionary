@@ -1,2 +1,12 @@
 {
-    
+    "santali_to_english": {
+        "ᱟᱢ": "you",
+        "ᱤᱧ": "i",
+        "ᱟᱡ": "he"
+    },
+    "english_to_santali": {
+        "you": "ᱟᱢ",
+        "i": "ᱤᱧ",
+        "he": "ᱟᱡ"
+    }
+}
