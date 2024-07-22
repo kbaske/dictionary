@@ -38,21 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             dictionary[language][word].push(...meanings);
 
-            // Save updated dictionary
-            fetch('update_dictionary', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dictionary)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    displayDictionary();
-                } else {
-                    console.error('Error updating dictionary:', data.error);
-                }
-            })
-            .catch(error => console.error('Error updating dictionary:', error));
+            // Simulate saving the updated dictionary (For GitHub Pages, this won't persist changes)
+            console.log('Updated Dictionary:', dictionary);
+
+            // Refresh displayed dictionary
+            displayDictionary();
+        } else {
+            console.error('Word or meanings are empty.');
         }
     });
 });
