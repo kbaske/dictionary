@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const meanings = meaningsInput.value.split(',').map(m => m.trim());
 
         if (word && meanings.length > 0) {
-            fetch('https://sat-en-dictionary.vercel.app/api/updateDictionary', {
+            fetch('https://sat-en-dictionary.vercel.app/api/updateDictionary', { // Replace with your actual Vercel URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
