@@ -1,0 +1,27 @@
+name: Update Dictionary
+
+on:
+  repository_dispatch:
+    types: [update-dictionary]
+
+jobs:
+  update-dictionary:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update Dictionary File
+        run: |
+          echo "$INPUT_DATA" > sat_en_dictionary.json
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add sat_en_dictionary.json
+          git commit -m "Update dictionary"
+          git push
+        env:
+          INPUT_DATA: ${{ secrets.DICTIONARY_DATA }}
