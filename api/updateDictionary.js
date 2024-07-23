@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
         return;
     }
 
-    const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+    const octokit = new Octokit({ auth: process.env.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 });
     const repoOwner = 'kbaske';
     const repoName = 'sat-en-dictionary';
 
