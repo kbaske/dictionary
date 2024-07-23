@@ -33,16 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const meanings = meaningsInput.value.split(',').map(m => m.trim());
 
         if (word && meanings.length > 0) {
-            if (!dictionary[language][word]) {
-                dictionary[language][word] = [];
-            }
-            dictionary[language][word].push(...meanings);
-
-            // Simulate saving the updated dictionary (For GitHub Pages, this won't persist changes)
-            console.log('Updated Dictionary:', dictionary);
-
-            // Refresh displayed dictionary
-            displayDictionary();
+            fetch('https://your-vercel-app.vercel.app/api/updateDictionary', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    language,
+                    word,
+                    meanings
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Dictionary updated successfully') {
+                    dictionary[language][word] = dictionary[language][word] || [];
+                    dictionary[language][word].push(...meanings);
+                    displayDictionary();
+                } else {
+                    console.error('Error updating dictionary:', data);
+                }
+            })
+            .catch(error => console.error('Error updating dictionary:', error));
         } else {
             console.error('Word or meanings are empty.');
         }
