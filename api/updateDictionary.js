@@ -14,8 +14,8 @@ module.exports = async (req, res) => {
     }
 
     const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-    const repoOwner = 'your-username';
-    const repoName = 'your-repository';
+    const repoOwner = 'kbaske';
+    const repoName = 'sat-en-dictionary';
 
     // Fetch current dictionary
     const { data: dictionaryContent } = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
