@@ -18,8 +18,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
+          git config --global user.name 'kbaske'
+          git config --global user.email 'com.alldaysbg@gmail.com'
           git add sat_en_dictionary.json
           git commit -m "Update dictionary"
           git push
