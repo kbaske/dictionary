@@ -2,7 +2,7 @@ document.getElementById('loginForm').addEventListener('submit', loginAdmin);
 document.getElementById('addEntryForm').addEventListener('submit', addEntry);
 document.getElementById('editEntryForm').addEventListener('submit', editEntry);
 
-const adminPassword = 'karSun';  // Replace with your secure password
+const adminPassword = 'karya';  // Replace with your secure password
 
 function loginAdmin(event) {
     event.preventDefault();
@@ -22,6 +22,8 @@ async function addEntry(event) {
 
     try {
         const response = await fetch('https://raw.githubusercontent.com/kbaske/sat-en-dictionary/main/dictionary.json');
+        if (!response.ok) throw new Error('Failed to fetch dictionary.json');
+        
         const dictionary = await response.json();
 
         dictionary.entries.push({ santali, english });
@@ -42,6 +44,8 @@ async function editEntry(event) {
 
     try {
         const response = await fetch('https://raw.githubusercontent.com/kbaske/sat-en-dictionary/main/dictionary.json');
+        if (!response.ok) throw new Error('Failed to fetch dictionary.json');
+
         const dictionary = await response.json();
 
         const entry = dictionary.entries.find(e => e.santali === santali);
@@ -61,6 +65,9 @@ async function editEntry(event) {
 
 async function updateDictionary(dictionary) {
     try {
+        const sha = await getDictionarySha();
+        const content = unicodeToBase64(JSON.stringify(dictionary, null, 2));
+        
         const response = await fetch('https://api.github.com/repos/kbaske/sat-en-dictionary/contents/dictionary.json', {
             method: 'PUT',
             headers: {
@@ -69,11 +76,14 @@ async function updateDictionary(dictionary) {
             },
             body: JSON.stringify({
                 message: 'Update dictionary',
-                content: btoa(unicodeToBase64(JSON.stringify(dictionary, null, 2))),
-                sha: await getDictionarySha()
+                content: content,
+                sha: sha
             })
         });
+
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Failed to update dictionary:', errorText);
             throw new Error('Failed to update dictionary');
         }
     } catch (error) {
@@ -85,6 +95,8 @@ async function updateDictionary(dictionary) {
 async function getDictionarySha() {
     try {
         const response = await fetch('https://api.github.com/repos/kbaske/sat-en-dictionary/contents/dictionary.json');
+        if (!response.ok) throw new Error('Failed to fetch dictionary.json SHA');
+        
         const data = await response.json();
         return data.sha;
     } catch (error) {
