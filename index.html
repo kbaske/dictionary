@@ -9,12 +9,12 @@
 <body>
     <div class="container">
         <h1>Santali-English Dictionary</h1>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Search for a word...">
-            <button id="searchButton">Search</button>
-        </div>
-        <div id="results"></div>
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="Search Santali or English words..." required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="resultsContainer"></div>
     </div>
-    <script src="script.js"></script>
+    <script src="dictionary.js"></script>
 </body>
 </html>
