@@ -20,14 +20,19 @@ async function addEntry(event) {
     const santali = document.getElementById('santaliWord').value;
     const english = document.getElementById('englishMeanings').value.split(',').map(s => s.trim());
 
-    const response = await fetch('https://raw.githubusercontent.com/kbaske/sat-en-dictionary/main/dictionary.json');
-    const dictionary = await response.json();
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/kbaske/sat-en-dictionary/main/dictionary.json');
+        const dictionary = await response.json();
 
-    dictionary.entries.push({ santali, english });
+        dictionary.entries.push({ santali, english });
 
-    await updateDictionary(dictionary);
-    alert('Entry added successfully!');
-    document.getElementById('addEntryForm').reset();
+        await updateDictionary(dictionary);
+        alert('Entry added successfully!');
+        document.getElementById('addEntryForm').reset();
+    } catch (error) {
+        console.error('Error adding entry:', error);
+        alert('Failed to add entry.');
+    }
 }
 
 async function editEntry(event) {
@@ -35,40 +40,59 @@ async function editEntry(event) {
     const santali = document.getElementById('editSantaliWord').value;
     const english = document.getElementById('editEnglishMeanings').value.split(',').map(s => s.trim());
 
-    const response = await fetch('https://raw.githubusercontent.com/kbaske/sat-en-dictionary/main/dictionary.json');
-    const dictionary = await response.json();
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/kbaske/sat-en-dictionary/main/dictionary.json');
+        const dictionary = await response.json();
 
-    const entry = dictionary.entries.find(e => e.santali === santali);
-    if (entry) {
-        entry.english = english;
-        await updateDictionary(dictionary);
-        alert('Entry updated successfully!');
-        document.getElementById('editEntryForm').reset();
-    } else {
-        alert('Entry not found!');
+        const entry = dictionary.entries.find(e => e.santali === santali);
+        if (entry) {
+            entry.english = english;
+            await updateDictionary(dictionary);
+            alert('Entry updated successfully!');
+            document.getElementById('editEntryForm').reset();
+        } else {
+            alert('Entry not found!');
+        }
+    } catch (error) {
+        console.error('Error editing entry:', error);
+        alert('Failed to edit entry.');
     }
 }
 
 async function updateDictionary(dictionary) {
-    const response = await fetch('https://api.github.com/repos/kbaske/sat-en-dictionary/contents/dictionary.json', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer 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'  // Replace with your GitHub token
-        },
-        body: JSON.stringify({
-            message: 'Update dictionary',
-            content: btoa(JSON.stringify(dictionary, null, 2)),
-            sha: await getDictionarySha()
-        })
-    });
-    if (!response.ok) {
-        throw new Error('Failed to update dictionary');
+    try {
+        const response = await fetch('https://api.github.com/repos/kbaske/sat-en-dictionary/contents/dictionary.json', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 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'  // Replace with your GitHub token
+            },
+            body: JSON.stringify({
+                message: 'Update dictionary',
+                content: btoa(unicodeToBase64(JSON.stringify(dictionary, null, 2))),
+                sha: await getDictionarySha()
+            })
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update dictionary');
+        }
+    } catch (error) {
+        console.error('Error updating dictionary:', error);
+        throw error;
     }
 }
 
 async function getDictionarySha() {
-    const response = await fetch('https://api.github.com/repos/kbaske/sat-en-dictionary/contents/dictionary.json');
-    const data = await response.json();
-    return data.sha;
+    try {
+        const response = await fetch('https://api.github.com/repos/kbaske/sat-en-dictionary/contents/dictionary.json');
+        const data = await response.json();
+        return data.sha;
+    } catch (error) {
+        console.error('Error fetching dictionary SHA:', error);
+        throw error;
+    }
+}
+
+function unicodeToBase64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
 }
