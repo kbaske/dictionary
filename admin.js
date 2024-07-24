@@ -65,7 +65,7 @@ async function updateDictionary(dictionary) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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'  // Replace with your GitHub token
+                'Authorization': 'Bearer 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'  // Replace with your GitHub token
             },
             body: JSON.stringify({
                 message: 'Update dictionary',
