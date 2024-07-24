@@ -2,11 +2,11 @@
     "entries": [
         {
             "santali": "ᱚᱛᱮ",
-            "english": "Sun"
+            "english": ["Sun"]
         },
         {
             "santali": "ᱚᱲᱤᱯ",
-            "english": "Moon"
+            "english": ["Moon"]
         }
         // Add more entries as needed
     ]
