@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error('Error fetching the dictionary data:', error));
   
+    function highlightText(text, query) {
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+  
     function displayDictionary(dictionary) {
       dictionaryDiv.innerHTML = '';
       dictionary.forEach(entry => {
@@ -26,11 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
         const santaliDiv = document.createElement('div');
         santaliDiv.classList.add('santali');
-        santaliDiv.textContent = entry.santali;
+        santaliDiv.innerHTML = highlightText(entry.santali, searchInput.value);
   
         const englishDiv = document.createElement('div');
         englishDiv.classList.add('english');
-        englishDiv.textContent = entry.english;
+        englishDiv.innerHTML = highlightText(entry.english, searchInput.value);
   
         entryDiv.appendChild(santaliDiv);
         entryDiv.appendChild(englishDiv);
