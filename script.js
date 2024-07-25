@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const dictionaryDiv = document.getElementById('dictionary');
   
-    fetch('sat-en.json')  // Update this to the correct path of your JSON file in the GitHub repository
+    fetch('https://raw.githubusercontent.com/kbaske/dictionary/main/sat-en.json') // Update with your raw JSON URL
       .then(response => response.json())
       .then(data => {
         const dictionary = data;
@@ -11,29 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.addEventListener('input', () => {
           const query = searchInput.value.toLowerCase();
           const filteredDictionary = dictionary.filter(entry =>
-            entry.word.toLowerCase().includes(query)
+            entry.santali.toLowerCase().includes(query) || entry.english.toLowerCase().includes(query)
           );
           displayDictionary(filteredDictionary);
         });
       })
       .catch(error => console.error('Error fetching the dictionary data:', error));
-    
+  
     function displayDictionary(dictionary) {
       dictionaryDiv.innerHTML = '';
       dictionary.forEach(entry => {
         const entryDiv = document.createElement('div');
         entryDiv.classList.add('entry');
   
-        const wordDiv = document.createElement('div');
-        wordDiv.classList.add('word');
-        wordDiv.textContent = entry.word;
+        const santaliDiv = document.createElement('div');
+        santaliDiv.classList.add('santali');
+        santaliDiv.textContent = entry.santali;
   
-        const definitionDiv = document.createElement('div');
-        definitionDiv.classList.add('definition');
-        definitionDiv.textContent = entry.definition;
+        const englishDiv = document.createElement('div');
+        englishDiv.classList.add('english');
+        englishDiv.textContent = entry.english;
   
-        entryDiv.appendChild(wordDiv);
-        entryDiv.appendChild(definitionDiv);
+        entryDiv.appendChild(santaliDiv);
+        entryDiv.appendChild(englishDiv);
   
         dictionaryDiv.appendChild(entryDiv);
       });
