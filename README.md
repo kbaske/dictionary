@@ -50,7 +50,7 @@ We welcome contributions to both dictionaries! If you have suggestions, correcti
 
 ## License
 
-Both dictionaries are licensed under CC-BY-SA-4.0. See the `LICENSE` file in each repository for more details.
+Both dictionaries are licensed under `CC-BY-SA-4.0`. See the `LICENSE` file in each repository for more details.
 
 ## Contact
 
