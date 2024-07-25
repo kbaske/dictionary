@@ -25,7 +25,7 @@ The Santali-English Dictionary project aims to bridge the gap between Santali an
 
 ## 2. Santali Dictionary (sat)
 
-**Repository URL:** [Santali Dictionary](https://github.com/kbaske/dictionary/sat)
+**Repository URL:** [Santali Dictionary](https://github.com/kbaske/dictionary/tree/main/sat)
 
 The Santali Dictionary project focuses on providing a comprehensive resource for the Santali language itself, without English translations. This resource is ideal for:
 
