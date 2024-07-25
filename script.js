@@ -2,7 +2,7 @@ document.getElementById('searchButton').addEventListener('click', searchWord);
 
 async function searchWord() {
     const query = document.getElementById('search').value;
-    const response = await fetch('https://raw.githubusercontent.com/kbaske/sat-en-dictionary/main/dictionary.json');
+    const response = await fetch('https://raw.githubusercontent.com/kbaske/dictionary/main/sat-en.json');
     const dictionary = await response.json();
     
     const resultsContainer = document.getElementById('results');
