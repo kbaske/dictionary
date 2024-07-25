@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dictionary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #dictionary {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .word-entry {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .word {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .part-of-speech {
+            font-style: italic;
+            color: #555;
+        }
+        .definition {
+            margin: 10px 0;
+        }
+        .example {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div id="dictionary"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const repo = "kbaske/sat-en-dictionary";
+        const filePath = "sat-dictionary.json";
+        const url = `https://raw.githubusercontent.com/${repo}/main/${filePath}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const dictionary = document.getElementById("dictionary");
+                data.forEach(entry => {
+                    const entryDiv = document.createElement("div");
+                    entryDiv.className = "word-entry";
+
+                    const wordDiv = document.createElement("div");
+                    wordDiv.className = "word";
+                    wordDiv.textContent = entry.word;
+                    entryDiv.appendChild(wordDiv);
+
+                    const posDiv = document.createElement("div");
+                    posDiv.className = "part-of-speech";
+                    posDiv.textContent = entry.partOfSpeech;
+                    entryDiv.appendChild(posDiv);
+
+                    entry.definitions.forEach(def => {
+                        const defDiv = document.createElement("div");
+                        defDiv.className = "definition";
+                        defDiv.textContent = def.definition;
+                        entryDiv.appendChild(defDiv);
+
+                        if (def.example) {
+                            const exDiv = document.createElement("div");
+                            exDiv.className = "example";
+                            exDiv.textContent = `Example: ${def.example}`;
+                            entryDiv.appendChild(exDiv);
+                        }
+                    });
+
+                    dictionary.appendChild(entryDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching the JSON file:', error));
+    });
+</script>
+
+</body>
+</html>
