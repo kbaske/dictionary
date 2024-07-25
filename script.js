@@ -1,27 +1,42 @@
-document.getElementById('searchButton').addEventListener('click', searchWord);
-
-async function searchWord() {
-    const query = document.getElementById('search').value;
-    const response = await fetch('https://raw.githubusercontent.com/kbaske/dictionary/main/sat-en.json');
-    const dictionary = await response.json();
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const dictionaryDiv = document.getElementById('dictionary');
+  
+    fetch('sat-en.json')  // Update this to the correct path of your JSON file in the GitHub repository
+      .then(response => response.json())
+      .then(data => {
+        const dictionary = data;
+        displayDictionary(dictionary);
+  
+        searchInput.addEventListener('input', () => {
+          const query = searchInput.value.toLowerCase();
+          const filteredDictionary = dictionary.filter(entry =>
+            entry.word.toLowerCase().includes(query)
+          );
+          displayDictionary(filteredDictionary);
+        });
+      })
+      .catch(error => console.error('Error fetching the dictionary data:', error));
     
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = '';
-
-    for (const entry of dictionary.entries) {
-        if (entry.santali.includes(query) || entry.english.includes(query)) {
-            const entryDiv = document.createElement('div');
-            entryDiv.classList.add('entry');
-
-            const santaliWord = document.createElement('h3');
-            santaliWord.textContent = entry.santali;
-            entryDiv.appendChild(santaliWord);
-
-            const englishWord = document.createElement('p');
-            englishWord.textContent = entry.english;
-            entryDiv.appendChild(englishWord);
-
-            resultsContainer.appendChild(entryDiv);
-        }
+    function displayDictionary(dictionary) {
+      dictionaryDiv.innerHTML = '';
+      dictionary.forEach(entry => {
+        const entryDiv = document.createElement('div');
+        entryDiv.classList.add('entry');
+  
+        const wordDiv = document.createElement('div');
+        wordDiv.classList.add('word');
+        wordDiv.textContent = entry.word;
+  
+        const definitionDiv = document.createElement('div');
+        definitionDiv.classList.add('definition');
+        definitionDiv.textContent = entry.definition;
+  
+        entryDiv.appendChild(wordDiv);
+        entryDiv.appendChild(definitionDiv);
+  
+        dictionaryDiv.appendChild(entryDiv);
+      });
     }
-}
+  });
+  
