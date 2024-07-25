@@ -1,3 +1,38 @@
-{
-
-}
+[
+  {
+    "word": "????",
+    "partOfSpeech": "?????",
+    "definitions": [
+      {
+        "definition": "??? ?? ?????",
+        "example": "He can run very fast."
+      },
+      {
+        "definition": "Operate or function",
+        "example": "The machine runs smoothly."
+      },
+      {
+        "definition": "Compete in a race",
+        "example": "She decided to run for office."
+      }
+    ]
+  },
+  {
+    "word": "?????",
+    "partOfSpeech": "????",
+    "definitions": [
+      {
+        "definition": "?? ?? ??? ?????????? ??????",
+        "example": "I am reading a book."
+      },
+      {
+        "definition": "To arrange for someone to have a seat on a plane, a room in a hotel, etc.",
+        "example": "I booked a table for two."
+      },
+      {
+        "definition": "A division of a long work",
+        "example": "The book of Psalms in the Bib"
+      }
+    ]
+  }
+]
