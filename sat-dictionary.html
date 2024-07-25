@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Dictionary</title>
+    <title>Interactive Searchable Dictionary</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        #search {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
         #dictionary {
             max-width: 600px;
@@ -17,6 +27,7 @@
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 4px;
+            display: none; /* Initially hide all entries */
         }
         .word {
             font-size: 1.2em;
@@ -36,6 +47,8 @@
 </head>
 <body>
 
+<input type="text" id="search" placeholder="Search for a word...">
+
 <div id="dictionary"></div>
 
 <script>
@@ -48,6 +61,8 @@
             .then(response => response.json())
             .then(data => {
                 const dictionary = document.getElementById("dictionary");
+                const searchInput = document.getElementById("search");
+
                 data.forEach(entry => {
                     const entryDiv = document.createElement("div");
                     entryDiv.className = "word-entry";
@@ -77,6 +92,20 @@
                     });
 
                     dictionary.appendChild(entryDiv);
+                });
+
+                searchInput.addEventListener("input", function() {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const entries = dictionary.getElementsByClassName("word-entry");
+
+                    Array.from(entries).forEach(entry => {
+                        const word = entry.getElementsByClassName("word")[0].textContent.toLowerCase();
+                        if (word.includes(searchTerm)) {
+                            entry.style.display = "";
+                        } else {
+                            entry.style.display = "none";
+                        }
+                    });
                 });
             })
             .catch(error => console.error('Error fetching the JSON file:', error));
