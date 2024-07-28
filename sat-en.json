@@ -1,14 +1,18 @@
 [
   {
-    "ᱵᱤᱧ": "ᱨᱚᱴᱮ",
-    "snake": "frog"
+    "santali": "ᱵᱤᱧ",
+    "english": "snake"
   },
   {
-    "ᱵᱤᱧ": "ᱢᱮᱨᱚᱢ",
-    "snake": "goat"
+    "santali": "ᱨᱚᱴᱮ",
+    "english": "frog"
   },
   {
-    "ᱵᱤᱧ": "ᱡᱚᱢᱟᱜ",
-    "snake": "food"
+    "santali": "ᱢᱮᱨᱚᱢ",
+    "english": "goat"
+  },
+  {
+    "santali": "ᱡᱚᱢᱟᱜ",
+    "english": "food"
   }
 ]
