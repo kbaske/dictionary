@@ -1,22 +1,26 @@
 [
   {
-    "santali": "ᱵᱤᱧ",
-    "english": "snake"
+    "ᱥᱟᱱᱛᱟᱲ ᱟᱹᱲᱟᱹ ᱚᱞ ᱢᱮ ...": "ᱵᱤᱧ",
+    "Enter English meaning here...": "snake"
   },
   {
-    "santali": "ᱨᱚᱴᱮ",
-    "english": "frog"
+    "ᱥᱟᱱᱛᱟᱲ ᱟᱹᱲᱟᱹ ᱚᱞ ᱢᱮ ...": "ᱨᱚᱴᱮ",
+    "Enter English meaning here...": "frog"
   },
   {
-    "santali": "ᱢᱮᱨᱚᱢ",
-    "english": "goat"
+    "ᱥᱟᱱᱛᱟᱲ ᱟᱹᱲᱟᱹ ᱚᱞ ᱢᱮ ...": "ᱢᱮᱨᱚᱢ",
+    "Enter English meaning here...": "goat"
   },
   {
-    "santali": "ᱡᱚᱢᱟᱜ",
-    "english": "food"
+    "ᱥᱟᱱᱛᱟᱲ ᱟᱹᱲᱟᱹ ᱚᱞ ᱢᱮ ...": "ᱡᱚᱢᱟᱜ",
+    "Enter English meaning here...": "food"
   },
   {
-    "santali": "ᱥᱮᱸᱫᱽᱨᱟ",
-    "english": "search"
+    "ᱥᱟᱱᱛᱟᱲ ᱟᱹᱲᱟᱹ ᱚᱞ ᱢᱮ ...": "ᱥᱮᱸᱫᱽᱨᱟ",
+    "Enter English meaning here...": "search"
+  },
+  {
+    "ᱥᱟᱱᱛᱟᱲ ᱟᱹᱲᱟᱹ ᱚᱞ ᱢᱮ ...": "",
+    "Enter English meaning here...": ""
   }
 ]
