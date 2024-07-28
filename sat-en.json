@@ -1,22 +1,14 @@
 [
   {
-    "santali": "ᱟᱢᱟᱜ",
-    "english": "your"
+    "ᱵᱤᱧ": "ᱨᱚᱴᱮ",
+    "snake": "frog"
   },
   {
-    "santali": "ᱧᱩᱛᱩᱢ",
-    "english": "name"
+    "ᱵᱤᱧ": "ᱢᱮᱨᱚᱢ",
+    "snake": "goat"
   },
   {
-    "santali": "ᱪᱮᱫ",
-    "english": "what"
-  },
-  {
-    "santali": "ᱪᱮᱠᱟᱭᱮᱫᱼᱟ",
-    "english": "doing"
-  },
-  {
-    "santali": "ᱧᱟᱢ ᱠᱮᱫᱼᱟᱹᱧ",
-    "english": "got"
+    "ᱵᱤᱧ": "ᱡᱚᱢᱟᱜ",
+    "snake": "food"
   }
 ]
